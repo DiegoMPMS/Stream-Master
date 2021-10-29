@@ -45,7 +45,9 @@ void rotary_onButtonClick()
     return;
   }
   lastTimePressed = millis();
+  //remove on release
   Serial.println("Encoder button pressed");
+  //linha que deve ser alterada para mudar a função do botão do encoder
   bleKeyboard.write(KEY_RETURN);
 }
 
@@ -92,6 +94,7 @@ void loop()
     }
     lastPosition = newPosition;
   }
+  //---POTENCIOMETRO
 
   //---KEYPAD---
   char botao = teclado.getKey();
@@ -128,6 +131,18 @@ void loop()
     {
       bleKeyboard.press(KEY_MEDIA_MUTE);
     }
+    /*  
+        é importante explciar porque existem duas "formatações" para as teclas, * 0 # D, e as demais teclas
+        isso foi feito para facilitar a implementação e reduzir o número de "IFs",
+        existe um vetor chamado keyConvert[], que contem os botões que serão enviados para o computador
+        dessa forma basta usar o valor ASCII de cada tecla do keypad, para se referir a posição correta
+        no vetor, dessa forma o unico if que utlizamos é para identificar qual página do teclado estamos usando
+        e dessa forma inserir CTRL, SHIFT e ALT apropriadamente, é possivel utilizar várias combinações desses
+        modificadores, entretanto foi utilizado apenas um modificador por página, devido ao BUG do obs que não
+        diferencia entre multiplos modificadores, para obs (limite de 3 págs), sem obs (limite de 8 págs),
+        utilizando um servidor python para receber serial, é possivel um número infinito de páginas e botões
+        dependendo apenas da capacidae do utilizador em saber em que página de atalhos ele está.    
+    */ 
     else if (macroPage == 01)
     {
       bleKeyboard.press(KEY_LEFT_CTRL);
@@ -138,14 +153,18 @@ void loop()
     {
       bleKeyboard.press(KEY_LEFT_SHIFT);
       bleKeyboard.write(keyConvert[int(botao)-97]);
+      bleKeyboard.releaseAll();
     }
     else if (macroPage == 03)
     {
       bleKeyboard.press(KEY_LEFT_ALT);
       bleKeyboard.write(keyConvert[int(botao-97)]);
+      bleKeyboard.releaseAll();
     }
     delay(100);
+    //release all é lançado mais uma vez para garantir que nehum tecla estaja sendo segurada.
     bleKeyboard.releaseAll();
+    //o print no serial deve ser removido na versão comercial.
     Serial.print("Tecla do keypad :");
     Serial.println(keyConvert[int(botao)-97]);
     Serial.print("Pagina de Macros: ");
