@@ -92,21 +92,7 @@ void loop()
     }
     lastPosition = newPosition;
   }
-  //---POTENCIOMETRO---
-  if (bleKeyboard.isConnected())
-  {
 
-    /*if (potNewValue != potOldValue){
-      if (potNewValue == 0){
-        bleKeyboard.write(KEY_MEDIA_MUTE);
-      } else if (potNewValue > potOldValue){
-        bleKeyboard.write(KEY_MEDIA_VOLUME_UP);
-      } else if (potNewValue < potOldValue){
-        bleKeyboard.write(KEY_MEDIA_VOLUME_DOWN);
-      }
-        potOldValue = potNewValue;
-    }*/
-  }
   //---KEYPAD---
   char botao = teclado.getKey();
   if (bleKeyboard.isConnected() && botao)
@@ -136,7 +122,7 @@ void loop()
     else if (botao == 'D')
     {
       bleKeyboard.press(KEY_LEFT_GUI);
-      bleKeyboard.press('d');
+      bleKeyboard.press('r');
     }
     else if (botao == '0')
     {
