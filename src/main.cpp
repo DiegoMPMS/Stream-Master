@@ -124,8 +124,14 @@ void loop()
     }
     else if (botao == 'D')
     {
+      // essa função exemplifica um possivel keystroke injector,
+      // cuidado ao conectar dispositivos bluetooth disconhecidos ao seu computador.
       bleKeyboard.press(KEY_LEFT_GUI);
       bleKeyboard.press('r');
+      bleKeyboard.releaseAll();
+      bleKeyboard.print("chrome https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+      delay(100);
+      bleKeyboard.write(KEY_RETURN);
     }
     else if (botao == '0')
     {
