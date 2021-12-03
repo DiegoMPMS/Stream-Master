@@ -138,7 +138,8 @@ void loop()
     }
     else if (botao == '0')
     {
-      bleKeyboard.press(KEY_DOWN_ARROW);
+      bleKeyboard.press(KEY_MEDIA_MUTE);
+      bleKeyboard.releaseAll(); // fix necessário para impedir teclas presas
     }
     /*  
         é importante explciar porque existem duas "formatações" para as teclas, * 0 # D, e as demais teclas
