@@ -126,16 +126,18 @@ void loop()
     {
       // essa função exemplifica um possivel keystroke injector,
       // cuidado ao conectar dispositivos bluetooth disconhecidos ao seu computador.
-      bleKeyboard.press(KEY_LEFT_GUI);
-      bleKeyboard.press('r');
-      bleKeyboard.releaseAll();
-      bleKeyboard.print("chrome https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-      delay(100);
-      bleKeyboard.write(KEY_RETURN);
+      //bleKeyboard.press(KEY_LEFT_GUI);
+      //bleKeyboard.press('r');
+      //bleKeyboard.releaseAll();
+      //bleKeyboard.print("chrome https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+      //delay(100);
+      //bleKeyboard.write(KEY_RETURN);
+      bleKeyboard.press(KEY_LEFT_ALT);
+      bleKeyboard.press(KEY_TAB);
     }
     else if (botao == '0')
     {
-      bleKeyboard.press(KEY_MEDIA_MUTE);
+      bleKeyboard.press(KEY_DOWN_ARROW);
     }
     /*  
         é importante explciar porque existem duas "formatações" para as teclas, * 0 # D, e as demais teclas
