@@ -134,6 +134,7 @@ void loop()
       //bleKeyboard.write(KEY_RETURN);
       bleKeyboard.press(KEY_LEFT_ALT);
       bleKeyboard.press(KEY_TAB);
+      bleKeyboard.releaseAll();
     }
     else if (botao == '0')
     {
